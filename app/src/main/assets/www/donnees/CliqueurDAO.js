@@ -1,4 +1,4 @@
-var CliquerDAO = function(){
+var CliqueurDAO = function(){
 	
 	this.cliqueur;
 	
