@@ -12,9 +12,8 @@
 		
 		<script type="text/html" id="pagePrincipale">
 			<h1>{POINTS}</h1>
-			<form>
-				<input type="button" value="Cliquez!"/>
-			</form>
+			<button id="cliqueur" type="button">Cliquer</button>
+			<button id="sauvegarder" type="button">Sauvegarder</button>
 			<a href="#ameliorations">Améliorations</a>
 			<a href="#statistiques">Statistiques</a>
 			<a href="#avis">Donnez votre avis</a>
@@ -47,7 +46,12 @@
 			</form>
 		</script>
 		
- 
+		<script src="modele/Cliqueur.js"></script>
+		<script src="modele/Amelioration.js"></script>
+		<script src="modele/Avis.js"></script>
+		<script src="donnees/CliqueurDAO.js"></script>
+		<script src="donnees/AmeliorationDAO.js"></script>
+		<script src="donnees/AvisDAO.js"></script>
 		<script src="vue/CliqueurVue.js"></script>
 		<script src="vue/StatistiquesVue.js"></script>
 		<script src="vue/AmeliorationsVue.js"></script>

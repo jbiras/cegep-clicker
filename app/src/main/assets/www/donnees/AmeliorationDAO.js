@@ -71,12 +71,12 @@ var AmeliorationDAO = function(){
 	
 	this.reagirErreur = function(erreur){
 		console.log("ERREUR:SQL:" + erreur.code + ":" + erreur.message);
-		alert("ERREUR:SQL:" + erreur.code + ":" + erreur.message);
+		//alert("ERREUR:SQL:" + erreur.code + ":" + erreur.message);
 	}
 	
 	this.reagirSucces = function(){
 		console.log("SUCCES:SQL:");
-		alert("SUCCES:SQL:");
+		//alert("SUCCES:SQL:");
 	}
 	
 	this.initialiser();

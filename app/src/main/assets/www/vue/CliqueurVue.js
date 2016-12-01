@@ -1,8 +1,8 @@
-var CliqueurVue = function() {
+var CliqueurVue = function(cliqueur) {
 	this.afficher = function() {
 		var htmlEnConstruction = 
 			CliqueurVue.html
-			.replace("{POINTS}", "96%");
+			.replace("{POINTS}", cliqueur.nombrePourcentActuel+ " %");
 		$("body").html(htmlEnConstruction);
 	}
 }

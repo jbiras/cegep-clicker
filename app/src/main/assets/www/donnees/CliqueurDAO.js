@@ -63,14 +63,21 @@ var CliqueurDAO = function(){
 			function(operation){
 				var SQL_SELECTION = "SELECT * FROM cliqueur";
 				operation.executeSql(SQL_SELECTION, [], function(operation, resultat){
+					try{
+						var enregistrementCliqueur = resultat.rows.item(0);
+						var cliqueur = new Cliqueur();
+						cliqueur.hydrate(
+							enregistrementCliqueur.id,
+							enregistrementCliqueur.nombrePourcentActuel,
+							enregistrementCliqueur.nombrePourcentTotal,
+							enregistrementCliqueur.nombrePourcentParClique
+						);
+					}catch(err){
+						var cliqueur = new Cliqueur();
+						cliqueur.hydrate(null, 0, 0, 1);
+					}
 					
-					var enregistrementCliqueur = resultat.rows.item(0);
-					var cliqueur = new Cliqueur(
-						enregistrementCliqueur.id,
-						enregistrementCliqueur.nombrePourcentActuel,
-						enregistrementCliqueur.nombrePourcentTotal,
-						enregistrementCliqueur.nombrePourcentParClique
-					);
+					
 					self.cliqueur = cliqueur;
 					
 				});

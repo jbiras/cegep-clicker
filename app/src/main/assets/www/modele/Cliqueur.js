@@ -1,10 +1,13 @@
-var Cliqueur = function(id, nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParClique){
-	this.construire = function(){
+var Cliqueur = function(){
+	this.hydrate = function(id, nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParClique){
 		this.id = id;
 		this.nombrePourcentActuel = nombrePourcentActuel;
 		this.nombrePourcentTotal = nombrePourcentTotal;
 		this.nombrePourcentParClique = nombrePourcentParClique;
 	}
 	
-	this.construire();
+	this.clique = function(){
+		this.nombrePourcentActuel++;
+		this.nombrePourcentTotal++;
+	}
 }
