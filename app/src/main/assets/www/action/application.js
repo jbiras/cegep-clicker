@@ -26,8 +26,7 @@ var applicationCegepCliqueur = {
 			this.ameliorationDAO.listerToutesLesAmeliorations
 			
 		} else if(ancre.match(/^#statistiques/)) {
-			statistiquesVue = new StatistiquesVue();
-			statistiquesVue.afficher();
+			this.cliqueurDAO.trouverLeCliqueur($.proxy(this.afficherLesStatistiques, this));
 		} else if(ancre.match(/^#avis/)) {
 			avisVue = new AvisVue();
 			avisVue.afficher();
@@ -42,10 +41,19 @@ var applicationCegepCliqueur = {
 		$("#sauvegarder").on('click', $.proxy(this.sauvegarderCliqueur, this));
 	},
 	
+
 	afficherLesAmeliorations:function(){
 		//var liste = 
 		ameliorationsVue = new AmeliorationsVue(this.cliqueur);
 		ameliorationsVue.afficher();
+	},
+
+	afficherLesStatistiques:function(cliqueur) {
+		this.cliqueur = cliqueur;
+		this.statistiquesVue = new StatistiquesVue(cliqueur);
+		this.statistiquesVue.afficher();
+		$("#effacer").on('click', $.proxy(this.supprimerCliqueur, this));
+
 	},
 	
 	cliquer:function(){
@@ -59,20 +67,18 @@ var applicationCegepCliqueur = {
 		}else{
 			this.cliqueurDAO.modifierCliqueur(this.cliqueur);
 		}
+	},
+	
+	supprimerCliqueur:function() {
+		if(this.cliqueur.id == null) {
+			// ¯\_(ツ)_/¯
+		} else {
+			this.cliqueurDAO.supprimerCliqueur(this.cliqueur);
+			cliqueur = new Cliqueur();
+			cliqueur.hydrate(this.cliqueur, 0, 0, 1);
+			this.afficherLesStatistiques(cliqueur);
+		}
 	}
-	
-	/*sauvegarderNouveauTodo:function(todo) {
-		this.todosDAO.ajouterTodo(todo);
-	},
-	
-	sauvegarderModificationsTodo:function(todo) {
-		this.todosDAO.modifierTodo(todo);
-	},
-	
-	afficherTousLesTodos:function(listeTodos) {
-		this.listeTodosVue = new ListeTodosVue(listeTodos);
-		this.listeTodosVue.afficher();
-	}*/
 };
 applicationCegepCliqueur.lancer();
 
