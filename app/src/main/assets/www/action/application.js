@@ -23,8 +23,8 @@ var applicationCegepCliqueur = {
 		if(!ancre) {
 			this.cliqueurDAO.trouverLeCliqueur($.proxy(this.afficherLeCliqueur,this));
 		} else if(ancre.match(/^#ameliorations/)) {
-			ameliorationsVue = new AmeliorationsVue();
-			ameliorationsVue.afficher();
+			this.ameliorationDAO.listerToutesLesAmeliorations
+			
 		} else if(ancre.match(/^#statistiques/)) {
 			statistiquesVue = new StatistiquesVue();
 			statistiquesVue.afficher();
@@ -40,6 +40,12 @@ var applicationCegepCliqueur = {
 		this.cliqueurVue.afficher();
 		$("#cliqueur").on('click', $.proxy(this.cliquer, this));
 		$("#sauvegarder").on('click', $.proxy(this.sauvegarderCliqueur, this));
+	},
+	
+	afficherLesAmeliorations:function(){
+		//var liste = 
+		ameliorationsVue = new AmeliorationsVue(this.cliqueur);
+		ameliorationsVue.afficher();
 	},
 	
 	cliquer:function(){

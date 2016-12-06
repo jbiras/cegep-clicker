@@ -3,7 +3,6 @@ var AmeliorationDAO = function(){
 	this.listeAmeliorations = [];
 	
 	this.initialiser = function(){
-		var SQL_CREATION = "CREATE TABLE IF NOT EXISTS amelioration(id INTEGER PRIMARY KEY AUTOINCREMENT, cout REAL, nom VARCHAR(30), taux REAL, nombreAchete INTEGER)";
 		this.baseDeDonnees = window.openDatabase("CegepCliqueur", "1.0", "CegepCliqueur", 200000);
 		
 		this.baseDeDonnees.transaction(
@@ -14,6 +13,22 @@ var AmeliorationDAO = function(){
 		},
 		this.reagirErreur,
 		this.reagirSucces
+		);
+	}
+	
+	this.premierAjout = function(){
+		this.baseDeDonnees.transaction(
+			function(operation){
+				var SQL_AJOUT = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(10, 'Machines à café' , 0.2, 0)";
+				var SQL_AJOUT2 = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(100, 'Giga d'internet' , 0.8, 0)";
+				var SQL_AJOUT3 = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(500, 'Canne de billard' , 4, 0)";
+				operation.executeSql(SQL_AJOUT);
+				operation.executeSql(SQL_AJOUT2);
+				operation.executeSql(SQL_AJOUT3);
+				
+			},
+			this.reagirErreur,
+			this.reagirSucces
 		);
 	}
 	
@@ -32,8 +47,8 @@ var AmeliorationDAO = function(){
 	this.modifierAmelioration = function(amelioration){
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_MODIFICATION = "UPDATE amelioration SET cout = ?, nom = ?, taux = ?, nombreAchete = ?";
-				var parametres = [amelioration.cout, amelioration.nom, amelioration.taux, amelioration.nombreAchete];
+				var SQL_MODIFICATION = "UPDATE amelioration SET cout = ?, nom = ?, taux = ?, nombreAchete = ? where id = ?";
+				var parametres = [amelioration.cout, amelioration.nom, amelioration.taux, amelioration.nombreAchete, amelioration.id];
 				operation.executeSql(SQL_MODIFICATION, parametres);
 			},
 			this.reagirSucces,
