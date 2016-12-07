@@ -16,22 +16,6 @@ var AmeliorationDAO = function(){
 		);
 	}
 	
-	this.premierAjout = function(){
-		this.baseDeDonnees.transaction(
-			function(operation){
-				var SQL_AJOUT = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(10, 'Machines à café' , 0.2, 0)";
-				var SQL_AJOUT2 = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(100, 'Giga d'internet' , 0.8, 0)";
-				var SQL_AJOUT3 = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(500, 'Canne de billard' , 4, 0)";
-				operation.executeSql(SQL_AJOUT);
-				operation.executeSql(SQL_AJOUT2);
-				operation.executeSql(SQL_AJOUT3);
-				
-			},
-			this.reagirErreur,
-			this.reagirSucces
-		);
-	}
-	
 	this.ajouterAmelioration = function(amelioration){
 		this.baseDeDonnees.transaction(
 			function(operation){
@@ -65,15 +49,30 @@ var AmeliorationDAO = function(){
 				operation.executeSql(SQL_SELECTION, [], function(operation, resultat)
 				{
 					self.listeAmeliorations = [];
-					for(var position = 0; position<resultat.rows.length; position++){
-						var enregistrementAmelioration = resultat.rows.item(position);
-						amelioration = new AmeliorationDAO(enregistrementAmelioration.id,
-											enregistrementAmelioration.cout,
-											enregistrementAmelioration.nom,
-											enregistrementAmelioration.taux,
-											enregistrementAmelioration.nombreAchete);
+				
+					if(resultat.rows.length > 0){
+						for(var position = 0; position<resultat.rows.length; position++){
+							var enregistrementAmelioration = resultat.rows.item(position);
+							amelioration = new AmeliorationDAO(enregistrementAmelioration.id,
+												enregistrementAmelioration.cout,
+												enregistrementAmelioration.nom,
+												enregistrementAmelioration.taux,
+												enregistrementAmelioration.nombreAchete);
+							self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
+						}
+					}else{
+						var SQL_AJOUT = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(10, 'Machines à café' , 0.2, 0)";
+						var SQL_AJOUT2 = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(100, 'Giga d'internet' , 0.8, 0)";
+						var SQL_AJOUT3 = "INSERT INTO amelioration(cout, nom, taux, nombreAchete) VALUES(500, 'Canne de billard' , 4, 0)";
+						amelioration = new Amelioration(1,10, "Machine à café", 0.2,0);
+						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
+						amelioration = new Amelioration(2,100, "Giga d'internet", 0.8,0);
+						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
+						amelioration = new Amelioration(3,500, "Canne de billard", 4,0);
 						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
 					}
+						
+
 				});
 			},
 			this.reagirErreur,

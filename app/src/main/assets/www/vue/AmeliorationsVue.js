@@ -1,16 +1,17 @@
-var AmeliorationsVue = function(cliqueur) {
+var AmeliorationsVue = function(cliqueur, listeAmeliorations) {
 	this.afficher = function() {
-		console.log(cliqueur)
-		var htmlEnConstruction = 
-			AmeliorationsVue.html
-			.replace("{POURCENTS_ACTUELS}", cliqueur.nombrePourcentActuel)
-			.replace("{NOMBRE_MACHINES}", "5")
-			.replace("{PRIX_MACHINE}", "2%")
-			.replace("{NOMBRE_GIGAS}", "1")
-			.replace("{PRIX_GIGA}", "17%")
-			.replace("{NOMBRE_CANNES}", "0")
-			.replace("{PRIX_CANNE}", "80%");
+		var htmlEnConstruction = AmeliorationsVue.html.replace("{POURCENTS_ACTUELS}", cliqueur.nombrePourcentActuel);
+		
+		
+		for(var no_amelioration in listeAmeliorations){
+			htmlEnConstruction += AmeliorationsVue.htmlListe.replace("{ID}", listeAmeliorations[no_amelioration].id)
+																.replace("{NOM}", listeAmeliorations[no_amelioration].nom)
+																.replace("{NOMBRE}", listeAmeliorations[no_amelioration].nombreAchete)
+																.replace("{PRIX}", listeAmeliorations[no_amelioration].cout)
+		}
+		
 		$("body").html(htmlEnConstruction);
 	}
 }
 AmeliorationsVue.html = $("#pageAmeliorations").html();
+AmeliorationsVue.htmlListe = $("#pageAmeliorationsListe").html();

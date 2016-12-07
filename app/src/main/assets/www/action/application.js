@@ -23,7 +23,7 @@ var applicationCegepCliqueur = {
 		if(!ancre) {
 			this.cliqueurDAO.trouverLeCliqueur($.proxy(this.afficherLeCliqueur,this));
 		} else if(ancre.match(/^#ameliorations/)) {
-			this.ameliorationDAO.listerToutesLesAmeliorations
+			this.ameliorationDAO.listerToutesLesAmeliorations($.proxy(this.afficherLesAmeliorations, this));
 			
 		} else if(ancre.match(/^#statistiques/)) {
 			this.cliqueurDAO.trouverLeCliqueur($.proxy(this.afficherLesStatistiques, this));
@@ -42,9 +42,9 @@ var applicationCegepCliqueur = {
 	},
 	
 
-	afficherLesAmeliorations:function(){
-		//var liste = 
-		ameliorationsVue = new AmeliorationsVue(this.cliqueur);
+	afficherLesAmeliorations:function(listeAmeliorations){
+		console.log(listeAmeliorations);
+		ameliorationsVue = new AmeliorationsVue(this.cliqueur, listeAmeliorations);
 		ameliorationsVue.afficher();
 	},
 

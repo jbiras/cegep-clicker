@@ -7,5 +7,10 @@ var Amelioration = function(id, cout, nom, taux, nombreAchete){
 		this.nombreAchete = nombreAchete;
 	}
 	
+	this.achat = function(){
+		this.nombreAchete++;
+		this.cout = this.cout * 1.11;
+	}
+	
 	this.construire();
 }
