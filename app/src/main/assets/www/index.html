@@ -4,6 +4,9 @@
 		<meta charset="UTF-8">
 		<title>Cegep clicker</title>
 		<style type="text/css">
+			li {
+				list-style:none;
+			}
 		</style>
 		<script type="text/javascript" charset="utf-8" src="lib/jquery.js"></script>
 	</head>
@@ -39,7 +42,7 @@
 		
 		<script type="text/html" id="pageVotreAvis">
 			<h1>Donnez votre avis</h1>
-			<form>
+			<form id="formAvis">
 				<label for="commentaire">Commentaire:</label>
 				<br/>
 				<textarea id="commentaire"></textarea>
@@ -48,9 +51,19 @@
 				</label>
 				<br/>
 				<input type="text" id="note"/>
-				<br/>
+				<br/><br/>
 				<input type="submit" id="envoyer" value="Envoyer" />
+				<br/><br/>
+				<h3>Liste des avis:</h3>
+				<ul id="listeAvis"></ul>
 			</form>
+		</script>
+		
+		<script type="text/html" id="itemListeAvis">
+			<li>
+				Commentaire:<br/>{COMMENTAIRE}<br/>Note: {NOTE}/5
+			</li>
+			<br/>
 		</script>
 		
 		<script src="modele/Cliqueur.js"></script>

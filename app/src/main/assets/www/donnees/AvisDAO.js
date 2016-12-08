@@ -20,6 +20,7 @@ this.listeAvis = [];
 	}
 	
 	this.ajouterAvis = function(avis){
+		console.log(avis.note);
 		this.baseDeDonnees.transaction(
 			function(operation){
 				var SQL_AJOUT = "INSERT INTO avis (note, commentaire) VALUES (?,?)";

@@ -28,7 +28,7 @@ var applicationCegepCliqueur = {
 		} else if(ancre.match(/^#statistiques/)) {
 			this.cliqueurDAO.trouverLeCliqueur($.proxy(this.afficherLesStatistiques, this));
 		} else if(ancre.match(/^#avis/)) {
-			this.avisDao.listerTousLesAvis($.proxy(this.afficherLesAvis, this));
+			this.avisDAO.listerTousLesAvis($.proxy(this.afficherLesAvis, this));
 		}
 	},
 	
@@ -55,8 +55,8 @@ var applicationCegepCliqueur = {
 
 	},
 	
-	afficherLesAvis:function() {
-		this.avisVue = new AvisVue();
+	afficherLesAvis:function(listeAvis) {
+		this.avisVue = new AvisVue(listeAvis);
 		this.avisVue.afficher($.proxy(this.ajouterAvis, this));
 	},
 	
@@ -85,7 +85,7 @@ var applicationCegepCliqueur = {
 	},
 	
 	ajouterAvis:function(avis) {
-		this.avisDAO.ajouterAvis(this.avis);
+		this.avisDAO.ajouterAvis(avis);
 	}
 };
 applicationCegepCliqueur.lancer();
