@@ -1,6 +1,6 @@
 var AvisDAO = function(){
 	
-	this.listeAvis = [];
+this.listeAvis = [];
 	
 	this.initialiser = function(){
 		
@@ -82,7 +82,5 @@ var AvisDAO = function(){
 		console.log("SUCCES SQL YOLO");
 	}
 	
-	this.initialiser();
-	
-	
+	this.initialiser();	
 };
