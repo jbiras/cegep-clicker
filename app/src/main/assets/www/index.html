@@ -7,15 +7,59 @@
 			li {
 				list-style:none;
 			}
+			
+			body {
+				margin: 0;
+				overflow: hidden;
+				height: 100%;
+			}
+
+			/* Scale canvas with resize attribute to full size */
+			canvas[resize] {
+				width: 100%;
+				height: 100%;
+			}
 		</style>
 		<script type="text/javascript" charset="utf-8" src="lib/jquery.js"></script>
+		<script type="text/javascript" src="lib/paper.js"></script>
+		<script type="text/paperscript" canvas="canvas">
+			var rectangle = new Rectangle(new Point(50, 50), new Point(280, 250));
+			var cornerSize = new Size(80, 50);
+			var path = new Path.RoundRectangle(rectangle, cornerSize);
+			path.fillColor = 'blue';
+
+			var rectangle = new Rectangle(new Point(30, -30), new Point(130, 150));
+			var cornerSize = new Size(40, 40);
+			var path = new Path.RoundRectangle(rectangle, cornerSize);
+			path.position += [87.5, 90]
+			path.fillColor = 'white';
+
+			var rectangle = new Rectangle(new Point(30, 80), new Point(210, 150));
+			var cornerSize = new Size(40, 40);
+			var path = new Path.RoundRectangle(rectangle, cornerSize);
+			path.position += [48, 40]
+			path.rotate(90);
+			path.fillColor = 'blue';
+				
+			var rectangle = new Rectangle(new Point(30, -30), new Point(180, 15));
+			var path = new Path.RoundRectangle(rectangle);
+			path.position += [100, 235]
+			path.fillColor = 'white';
+
+			var rectangle = new Rectangle(new Point(30, 0), new Point(90, 15));
+			var path = new Path.RoundRectangle(rectangle);
+			path.position += [108, 50]
+			path.fillColor = 'white';
+		</script>
 	</head>
 	<body>    
 		Il y a une erreur dans le programme
 		
 		<script type="text/html" id="pagePrincipale">
 			<h1>{POINTS}</h1>
-			<button id="cliqueur" type="button">Cliquer</button>
+			<button id="cliqueur" type="button">
+				<canvas id="canvas" resize></canvas>
+			</button>
 			<button id="sauvegarder" type="button">Sauvegarder</button>
 			<a href="#ameliorations">Améliorations</a>
 			<a href="#statistiques">Statistiques</a>
