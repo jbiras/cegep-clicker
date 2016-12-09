@@ -71,17 +71,19 @@
 			<p>Points actuels: {POINTS_ACTUELS}</p>
 			<p>Points totaux: {POINTS_TOTAUX}</p>
 			<p>Points par clic: {POINTS_PAR_CLIC}</p>
-			<button id="effacer">Effacer</button>
+			<button id="effacer">Effacer les données</button>
 			<a href="#">Retour au cliqueur</a>
 		</script>
 		
 		<script type="text/html" id="pageAmeliorations">
 			<h1>Améliorations</h1>
-			<h2>Poucents actuels : {POURCENTS_ACTUELS}
+			<h2>Poucents actuels : {POURCENTS_ACTUELS}</h2>
+			<div id="listeAmeliorations"></div>
+			<a href="#">Retour au cliqueur</a>
 		</script>
 		
 		<script type="text/html" id="pageAmeliorationsListe">
-			<p><button id="amelioration" name="{ID}">{NOM}({NOMBRE}) Prix: {PRIX}</button></p>
+			<p><button id="amelioration{ID}" {DESACTIVE}>{NOM}({NOMBRE}) Prix: {PRIX}</button></p>
 		</script>
 		
 		<script type="text/html" id="pageVotreAvis">

@@ -8,7 +8,7 @@ var CliqueurDAO = function(){
 		
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_CREATION = "CREATE TABLE IF NOT EXISTS cliqueur(id INTEGER PRIMARY KEY AUTOINCREMENT, nombrePourcentActuel REAL, nombrePourcentTotal REAL, nombrePourcentParClique REAL )";				
+				var SQL_CREATION = "CREATE TABLE IF NOT EXISTS cliqueur(id INTEGER PRIMARY KEY AUTOINCREMENT, nombrePourcentActuel REAL, nombrePourcentTotal REAL, nombrePourcentParSeconde REAL )";				
 				
 				operation.executeSql(SQL_CREATION);
 				
@@ -22,8 +22,8 @@ var CliqueurDAO = function(){
 	this.ajouterCliqueur = function(cliqueur){
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_AJOUT = "INSERT INTO cliqueur (nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParClique) VALUES (?,?,?)";
-				var parametres = [cliqueur.nombrePourcentActuel, cliqueur.nombrePourcentTotal, cliqueur.nombrePourcentParClique];
+				var SQL_AJOUT = "INSERT INTO cliqueur (nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParSeconde) VALUES (?,?,?)";
+				var parametres = [cliqueur.nombrePourcentActuel, cliqueur.nombrePourcentTotal, cliqueur.nombrePourcentParSeconde];
 				operation.executeSql(SQL_AJOUT, parametres);				
 			},
 			this.reagirErreur,
@@ -35,8 +35,8 @@ var CliqueurDAO = function(){
 	this.modifierCliqueur = function(cliqueur){
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_MODIFICATION = "UPDATE cliqueur SET nombrePourcentActuel = ?, nombrePourcentTotal = ?, nombrePourcentParClique = ? WHERE id = ?";
-				var parametres = [cliqueur.nombrePourcentActuel, cliqueur.nombrePourcentTotal, cliqueur.nombrePourcentParClique, cliqueur.id];
+				var SQL_MODIFICATION = "UPDATE cliqueur SET nombrePourcentActuel = ?, nombrePourcentTotal = ?, nombrePourcentParSeconde = ? WHERE id = ?";
+				var parametres = [cliqueur.nombrePourcentActuel, cliqueur.nombrePourcentTotal, cliqueur.nombrePourcentParSeconde, cliqueur.id];
 				operation.executeSql(SQL_MODIFICATION, parametres);
 			},
 			this.reagirErreur,
@@ -65,16 +65,12 @@ var CliqueurDAO = function(){
 				operation.executeSql(SQL_SELECTION, [], function(operation, resultat){
 					try{
 						var enregistrementCliqueur = resultat.rows.item(0);
-						var cliqueur = new Cliqueur();
-						cliqueur.hydrate(
-							enregistrementCliqueur.id,
+						var cliqueur = new Cliqueur(enregistrementCliqueur.id,
 							enregistrementCliqueur.nombrePourcentActuel,
 							enregistrementCliqueur.nombrePourcentTotal,
-							enregistrementCliqueur.nombrePourcentParClique
-						);
+							enregistrementCliqueur.nombrePourcentParSeconde);
 					}catch(err){
-						var cliqueur = new Cliqueur();
-						cliqueur.hydrate(null, 0, 0, 1);
+						var cliqueur = new Cliqueur(null, 0, 0, 0);
 					}
 					
 					

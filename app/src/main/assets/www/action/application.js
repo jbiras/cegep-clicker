@@ -45,6 +45,7 @@ var applicationCegepCliqueur = {
 		console.log(listeAmeliorations);
 		ameliorationsVue = new AmeliorationsVue(this.cliqueur, listeAmeliorations);
 		ameliorationsVue.afficher();
+		$("button[id^='amelioration']").on('click', $(this).id ,$.proxy(this.acheterAmelioration, this));
 	},
 
 	afficherLesStatistiques:function(cliqueur) {
@@ -73,13 +74,18 @@ var applicationCegepCliqueur = {
 		}
 	},
 	
+	acheterAmelioration:function(){
+		var idAmelioration = event.target.id;
+		var lol = idAmelioration.slice(12);
+		alert(lol);
+	},
+	
 	supprimerCliqueur:function() {
 		if(this.cliqueur.id == null) {
 			// ¯\_(ツ)_/¯
 		} else {
 			this.cliqueurDAO.supprimerCliqueur(this.cliqueur);
-			cliqueur = new Cliqueur();
-			cliqueur.hydrate(this.cliqueur, 0, 0, 1);
+			cliqueur = new Cliqueur(this.cliqueur, 0, 0, 0);
 			this.afficherLesStatistiques(cliqueur);
 		}
 	},
@@ -89,4 +95,6 @@ var applicationCegepCliqueur = {
 	}
 };
 applicationCegepCliqueur.lancer();
+
+
 
