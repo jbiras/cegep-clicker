@@ -42,17 +42,18 @@ var applicationCegepCliqueur = {
 	
 
 	afficherLesAmeliorations:function(listeAmeliorations){
+		this.listeAmeliorations = listeAmeliorations
 		console.log(listeAmeliorations);
 		ameliorationsVue = new AmeliorationsVue(this.cliqueur, listeAmeliorations);
 		ameliorationsVue.afficher();
-		$("button[id^='amelioration']").on('click', $(this).id ,$.proxy(this.acheterAmelioration, this));
+		$("button[id^='amelioration']").on('click' ,$.proxy(this.acheterAmelioration, this));
 	},
 
 	afficherLesStatistiques:function(cliqueur) {
 		this.cliqueur = cliqueur;
 		this.statistiquesVue = new StatistiquesVue(cliqueur);
 		this.statistiquesVue.afficher();
-		$("#effacer").on('click', $.proxy(this.supprimerCliqueur, this));
+		$("#effacer").on('click', $.proxy(this.supprimerDonnees, this));
 
 	},
 	
@@ -67,26 +68,38 @@ var applicationCegepCliqueur = {
 	},
 	
 	sauvegarderCliqueur:function(){
-		if(this.cliqueur.id == null){
+		try{
 			this.cliqueurDAO.ajouterCliqueur(this.cliqueur);
-		}else{
-			this.cliqueurDAO.modifierCliqueur(this.cliqueur);
+		}catch(err){
+			console.log(err);
+			//this.cliqueurDAO.modifierCliqueur(this.cliqueur);
 		}
 	},
 	
 	acheterAmelioration:function(){
 		var idAmelioration = event.target.id;
-		var lol = idAmelioration.slice(12);
-		alert(lol);
+		var idAmelioration = idAmelioration.slice(12);
+		alert(idAmelioration);
+		this.listeAmeliorations.forEach(function(amelioration){
+			if(amelioration.id == idAmelioration){
+				amelioration.achat(this.cliqueur);
+				console.log(amelioration);
+				this.ameliorationDAO.modifierAmelioration(amelioration);
+				this.sauvegarderCliqueur();
+				
+			}
+		}, this);
+		this.afficherLesAmeliorations(this.listeAmeliorations)
 	},
 	
-	supprimerCliqueur:function() {
+	supprimerDonnees:function() {
 		if(this.cliqueur.id == null) {
 			// ¯\_(ツ)_/¯
 		} else {
-			this.cliqueurDAO.supprimerCliqueur(this.cliqueur);
-			cliqueur = new Cliqueur(this.cliqueur, 0, 0, 0);
-			this.afficherLesStatistiques(cliqueur);
+			this.cliqueurDAO.supprimerCliqueur();
+			this.cliqueur = new Cliqueur(1,0, 0, 0);
+			this.ameliorationDAO.supprimerToutesAmeliorations();
+			this.afficherLesStatistiques(this.cliqueur);
 		}
 	},
 	

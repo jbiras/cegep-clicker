@@ -8,7 +8,7 @@ var CliqueurDAO = function(){
 		
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_CREATION = "CREATE TABLE IF NOT EXISTS cliqueur(id INTEGER PRIMARY KEY AUTOINCREMENT, nombrePourcentActuel REAL, nombrePourcentTotal REAL, nombrePourcentParSeconde REAL )";				
+				var SQL_CREATION = "CREATE TABLE IF NOT EXISTS cliqueur(id INTEGER PRIMARY KEY, nombrePourcentActuel REAL, nombrePourcentTotal REAL, nombrePourcentParSeconde REAL )";				
 				
 				operation.executeSql(SQL_CREATION);
 				
@@ -20,10 +20,11 @@ var CliqueurDAO = function(){
 	}
 	
 	this.ajouterCliqueur = function(cliqueur){
+		alerrt("allo DAO");
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_AJOUT = "INSERT INTO cliqueur (nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParSeconde) VALUES (?,?,?)";
-				var parametres = [cliqueur.nombrePourcentActuel, cliqueur.nombrePourcentTotal, cliqueur.nombrePourcentParSeconde];
+				var SQL_AJOUT = "INSERT INTO cliqueur (id, nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParSeconde) VALUES (?,?,?)";
+				var parametres = [cliqueur.id, cliqueur.nombrePourcentActuel, cliqueur.nombrePourcentTotal, cliqueur.nombrePourcentParSeconde];
 				operation.executeSql(SQL_AJOUT, parametres);				
 			},
 			this.reagirErreur,
@@ -44,12 +45,11 @@ var CliqueurDAO = function(){
 		);
 	}
 	
-	this.supprimerCliqueur = function(cliqueur){
+	this.supprimerCliqueur = function(){
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_SUPPRESSION = "DELETE FROM cliqueur where id = ?";
-				var parametres = [cliqueur.id];
-				operation.executeSql(SQL_SUPPRESSION, parametres);
+				var SQL_SUPPRESSION = "DELETE FROM cliqueur";
+				operation.executeSql(SQL_SUPPRESSION);
 			},
 			this.reagirErreur,
 			this.reagirSucces
@@ -70,7 +70,7 @@ var CliqueurDAO = function(){
 							enregistrementCliqueur.nombrePourcentTotal,
 							enregistrementCliqueur.nombrePourcentParSeconde);
 					}catch(err){
-						var cliqueur = new Cliqueur(null, 0, 0, 0);
+						var cliqueur = new Cliqueur(1, 0, 0, 0);
 					}
 					
 					
