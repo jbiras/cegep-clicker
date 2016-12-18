@@ -20,10 +20,10 @@ var CliqueurDAO = function(){
 	}
 	
 	this.ajouterCliqueur = function(cliqueur){
-		alerrt("allo DAO");
+		//alert("allo DAO");
 		this.baseDeDonnees.transaction(
 			function(operation){
-				var SQL_AJOUT = "INSERT INTO cliqueur (id, nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParSeconde) VALUES (?,?,?)";
+				var SQL_AJOUT = "INSERT INTO cliqueur (id, nombrePourcentActuel, nombrePourcentTotal, nombrePourcentParSeconde) VALUES (?,?,?,?)";
 				var parametres = [cliqueur.id, cliqueur.nombrePourcentActuel, cliqueur.nombrePourcentTotal, cliqueur.nombrePourcentParSeconde];
 				operation.executeSql(SQL_AJOUT, parametres);				
 			},
@@ -70,7 +70,7 @@ var CliqueurDAO = function(){
 							enregistrementCliqueur.nombrePourcentTotal,
 							enregistrementCliqueur.nombrePourcentParSeconde);
 					}catch(err){
-						var cliqueur = new Cliqueur(1, 0, 0, 0);
+						var cliqueur = new Cliqueur(null, 0, 0, 0);
 					}
 					
 					

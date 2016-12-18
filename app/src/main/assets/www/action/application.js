@@ -19,6 +19,10 @@ var applicationCegepCliqueur = {
 	},
 	
 	naviguer:function() {
+		if(this.interval !== undefined){
+			clearInterval(this.interval);
+			delete this.interval;
+		}
 		var ancre = window.location.hash;
 		if(!ancre) {
 			this.cliqueurDAO.trouverLeCliqueur($.proxy(this.afficherLeCliqueur,this));
@@ -36,8 +40,14 @@ var applicationCegepCliqueur = {
 		this.cliqueur = cliqueur;
 		this.cliqueurVue = new CliqueurVue(cliqueur);
 		this.cliqueurVue.afficher();
+		console.log(this.cliqueur);
+		if(this.interval === undefined){
+			this.interval = setInterval($.proxy(this.cliquerParSeconde,this), 1000);
+		}
+		
 		$("#cliqueur").on('click', $.proxy(this.cliquer, this));
 		$("#sauvegarder").on('click', $.proxy(this.sauvegarderCliqueur, this));
+		
 	},
 	
 
@@ -67,19 +77,24 @@ var applicationCegepCliqueur = {
 		this.afficherLeCliqueur(this.cliqueur);
 	},
 	
+	cliquerParSeconde:function(){
+		this.cliqueur.cliqueParSeconde();
+		this.afficherLeCliqueur(this.cliqueur);
+	},
+	
 	sauvegarderCliqueur:function(){
-		try{
+		if(this.cliqueur.id == null){
+			this.cliqueur.id = 1;
 			this.cliqueurDAO.ajouterCliqueur(this.cliqueur);
-		}catch(err){
-			console.log(err);
-			//this.cliqueurDAO.modifierCliqueur(this.cliqueur);
+		}else{
+			this.cliqueurDAO.modifierCliqueur(this.cliqueur);
 		}
 	},
 	
 	acheterAmelioration:function(){
 		var idAmelioration = event.target.id;
 		var idAmelioration = idAmelioration.slice(12);
-		alert(idAmelioration);
+		//alert(idAmelioration);
 		this.listeAmeliorations.forEach(function(amelioration){
 			if(amelioration.id == idAmelioration){
 				amelioration.achat(this.cliqueur);

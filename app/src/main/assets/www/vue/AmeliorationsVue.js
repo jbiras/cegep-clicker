@@ -1,6 +1,8 @@
 var AmeliorationsVue = function(cliqueur, listeAmeliorations) {
 	this.afficher = function() {
-		var pageListeAmeliorations = AmeliorationsVue.html.replace("{POURCENTS_ACTUELS}", cliqueur.nombrePourcentActuel);
+		var pourcentActuel = Math.round(cliqueur.nombrePourcentActuel*100)/100;
+		pourcentActuel = pourcentActuel.toFixed(2);
+		var pageListeAmeliorations = AmeliorationsVue.html.replace("{POURCENTS_ACTUELS}", pourcentActuel);
 		$("body").html(pageListeAmeliorations);
 		
 		var htmlListeAmeliorations = $("#listeAmeliorations");

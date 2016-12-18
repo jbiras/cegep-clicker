@@ -11,5 +11,10 @@ var Cliqueur = function(id, nombrePourcentActuel, nombrePourcentTotal, nombrePou
 		this.nombrePourcentTotal++;
 	}
 	
+	this.cliqueParSeconde = function(){
+		this.nombrePourcentActuel += (nombrePourcentParSeconde/2);
+		this.nombrePourcentTotal += (nombrePourcentParSeconde/2);
+	}
+	
 	this.construire();
 }
