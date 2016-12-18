@@ -52,6 +52,7 @@ var applicationCegepCliqueur = {
 	
 
 	afficherLesAmeliorations:function(listeAmeliorations){
+		this.sauvegarderCliqueur();
 		this.listeAmeliorations = listeAmeliorations
 		console.log(listeAmeliorations);
 		ameliorationsVue = new AmeliorationsVue(this.cliqueur, listeAmeliorations);
@@ -60,14 +61,15 @@ var applicationCegepCliqueur = {
 	},
 
 	afficherLesStatistiques:function(cliqueur) {
-		this.cliqueur = cliqueur;
-		this.statistiquesVue = new StatistiquesVue(cliqueur);
+		this.sauvegarderCliqueur();
+		this.statistiquesVue = new StatistiquesVue(this.cliqueur);
 		this.statistiquesVue.afficher();
 		$("#effacer").on('click', $.proxy(this.supprimerDonnees, this));
 
 	},
 	
 	afficherLesAvis:function(listeAvis) {
+		this.sauvegarderCliqueur();
 		this.avisVue = new AvisVue(listeAvis);
 		this.avisVue.afficher($.proxy(this.ajouterAvis, this));
 	},
