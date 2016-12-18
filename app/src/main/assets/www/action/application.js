@@ -1,7 +1,7 @@
 var applicationCegepCliqueur = {
 	
 	lancer:function() {
-				
+		paper.install(window);
 		$(window).on('hashchange', $.proxy(this.naviguer, this));
 		
 		if(navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)){
