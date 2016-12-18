@@ -68,9 +68,11 @@
 				<canvas id="canvas" resize></canvas>
 			</button>
 			<button id="sauvegarder" type="button">Sauvegarder</button>
-			<a href="#ameliorations">Améliorations</a>
-			<a href="#statistiques">Statistiques</a>
-			<a href="#avis">Donnez votre avis</a>
+			<div class="liensPagePrincipale">
+				<a href="#ameliorations">Améliorations</a>
+				<a href="#statistiques">Statistiques</a>
+				<a href="#avis">Donnez votre avis</a>
+			</div>
 		</script>
 		
 		<script type="text/html" id="pageStatistiques">
@@ -103,7 +105,14 @@
 				<label for="note">Note:
 				</label>
 				<br/>
-				<input type="text" id="note"/>
+				<select name="note" id="note">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
 				<br/><br/>
 				<input type="submit" id="envoyer" value="Envoyer" />
 				<br/><br/>
