@@ -45,7 +45,8 @@ var applicationCegepCliqueur = {
 			this.interval = setInterval($.proxy(this.cliquerParSeconde,this), 1000);
 		}
 		
-		$("#cliqueur").on('click', $.proxy(this.cliquer, this));
+		// $("#cliqueur").on('click', $.proxy(this.cliquer, this));
+		$("#monCanvas").on('click', $.proxy(this.cliquer, this));
 		$("#sauvegarder").on('click', $.proxy(this.sauvegarderCliqueur, this));
 		
 	},

@@ -12,34 +12,36 @@ var CliqueurVue = function(cliqueur) {
 		var canvas = document.getElementById('monCanvas');
 		// Create an empty project and a view for the canvas:
 		paper.setup(canvas);
-		
+			
 		var rectangle = new Rectangle(new Point(50, 50), new Point(280, 250));
 		var cornerSize = new Size(80, 50);
 		var path = new Path.RoundRectangle(rectangle, cornerSize);
 		path.fillColor = 'blue';
-
+		
 		var rectangle = new Rectangle(new Point(30, -30), new Point(130, 150));
 		var cornerSize = new Size(40, 40);
 		var path = new Path.RoundRectangle(rectangle, cornerSize);
-		path.position += [87.5, 90];
 		path.fillColor = 'white';
+		path.position = new Point(165, 150);
 
 		var rectangle = new Rectangle(new Point(30, 80), new Point(210, 150));
 		var cornerSize = new Size(40, 40);
 		var path = new Path.RoundRectangle(rectangle, cornerSize);
-		path.position += [48, 40];
 		path.rotate(90);
 		path.fillColor = 'blue';
+		path.position = new Point(165, 155);
 			
 		var rectangle = new Rectangle(new Point(30, -30), new Point(180, 15));
 		var path = new Path.RoundRectangle(rectangle);
-		path.position += [100, 235];
 		path.fillColor = 'white';
+		path.position = new Point(205, 228);
 
 		var rectangle = new Rectangle(new Point(30, 0), new Point(90, 15));
 		var path = new Path.RoundRectangle(rectangle);
-		path.position += [108, 50];
 		path.fillColor = 'white';
+		path.position = new Point(165, 57.5);
+
+		
 	}
 }
 CliqueurVue.html = $("#pagePrincipale").html();
