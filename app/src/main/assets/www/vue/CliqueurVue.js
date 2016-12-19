@@ -13,33 +13,33 @@ var CliqueurVue = function(cliqueur) {
 		// Create an empty project and a view for the canvas:
 		paper.setup(canvas);
 			
-		var rectangle = new Rectangle(new Point(50, 50), new Point(280, 250));
+		var rectangle = new Rectangle(new Point(0, 0), new Point(230, 180));
 		var cornerSize = new Size(80, 50);
 		var path = new Path.RoundRectangle(rectangle, cornerSize);
 		path.fillColor = 'blue';
 		
-		var rectangle = new Rectangle(new Point(30, -30), new Point(130, 150));
+		var rectangle = new Rectangle(new Point(-20, -80), new Point(80, 100));
 		var cornerSize = new Size(40, 40);
 		var path = new Path.RoundRectangle(rectangle, cornerSize);
-		path.fillColor = 'white';
-		path.position = new Point(165, 150);
+		path.fillColor = '#ffeecc';
+		path.position = new Point(115, 100);
 
-		var rectangle = new Rectangle(new Point(30, 80), new Point(210, 150));
+		var rectangle = new Rectangle(new Point(-20, 30), new Point(160, 100));
 		var cornerSize = new Size(40, 40);
 		var path = new Path.RoundRectangle(rectangle, cornerSize);
 		path.rotate(90);
 		path.fillColor = 'blue';
-		path.position = new Point(165, 155);
+		path.position = new Point(115, 105);
 			
-		var rectangle = new Rectangle(new Point(30, -30), new Point(180, 15));
+		var rectangle = new Rectangle(new Point(-20, -80), new Point(130, -35));
 		var path = new Path.RoundRectangle(rectangle);
-		path.fillColor = 'white';
-		path.position = new Point(205, 228);
+		path.fillColor = '#ffeecc';
+		path.position = new Point(155, 178);
 
-		var rectangle = new Rectangle(new Point(30, 0), new Point(90, 15));
+		var rectangle = new Rectangle(new Point(-20, -50), new Point(40, -35));
 		var path = new Path.RoundRectangle(rectangle);
-		path.fillColor = 'white';
-		path.position = new Point(165, 57.5);
+		path.fillColor = '#ffeecc';
+		path.position = new Point(115, 7.5);
 
 		
 	}

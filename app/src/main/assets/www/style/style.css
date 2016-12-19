@@ -6,9 +6,33 @@ body {
 	margin: 0;
 	overflow: hidden;
 	height: 100%;
+	background-color: #ffeecc;
 }
 
+.titrePrincipal{
+	text-align: center;
+}
 
+.titreStat{
+	font-weight: bold;
+}
+
+.pagePrincipale{
+	text-align: center;
+}
+
+.monCanvas{
+	height: 11em;
+	width: 14.1em;
+	border-bottom-right-radius: 3.8em;
+	border-bottom-left-radius: 3.2em;
+	border-top-left-radius: 3.2em;
+	border-top-right-radius: 3.2em;
+}
+
+.monCanvas:active{
+	transform: scale3D(1.05,1.05,1.05);
+}
 
 .liensPagePrincipale {
 	margin-top: 2em;
@@ -18,6 +42,7 @@ a {
 	background-color: #0033cc;
 	color: white;
 	padding: 0.2em;
+	border-radius: 0.5em;
 }
 
 a:hover {

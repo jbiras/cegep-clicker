@@ -38,6 +38,7 @@ var applicationCegepCliqueur = {
 	
 	afficherLeCliqueur:function(cliqueur){
 		this.cliqueur = cliqueur;
+		this.declencherShake = true;
 		this.cliqueurVue = new CliqueurVue(cliqueur);
 		this.cliqueurVue.afficher();
 		console.log(this.cliqueur);
@@ -48,6 +49,16 @@ var applicationCegepCliqueur = {
 		// $("#cliqueur").on('click', $.proxy(this.cliquer, this));
 		$("#monCanvas").on('click', $.proxy(this.cliquer, this));
 		$("#sauvegarder").on('click', $.proxy(this.sauvegarderCliqueur, this));
+		if(this.declencherShake){
+			jQuery(window).bind('shakeleftright', {obj:this}, function(event_,data_){
+				if(event_.data.obj.declencherShake){
+					event_.data.obj.cliquer();
+					event_.data.obj.declencherShake = false;
+				}
+				
+			});
+		}
+		
 		
 	},
 	

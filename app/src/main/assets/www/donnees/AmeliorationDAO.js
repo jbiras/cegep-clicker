@@ -77,14 +77,26 @@ var AmeliorationDAO = function(){
 						var SQL_AJOUT = "INSERT INTO amelioration(id, cout, nom, taux, nombreAchete) VALUES(1,10, 'Machines à café' , 0.2, 0)";
 						var SQL_AJOUT2 = "INSERT INTO amelioration(id, cout, nom, taux, nombreAchete) VALUES(2,100, 'Giga de données' , 0.8, 0)";
 						var SQL_AJOUT3 = "INSERT INTO amelioration(id, cout, nom, taux, nombreAchete) VALUES(3,500, 'Canne de billard' , 4, 0)";
+						var SQL_AJOUT4 = "INSERT INTO amelioration(id, cout, nom, taux, nombreAchete) VALUES(4,2000, 'Billet de taxi bleu' , 12, 0)";
+						var SQL_AJOUT5 = "INSERT INTO amelioration(id, cout, nom, taux, nombreAchete) VALUES(5,7000, 'Billet de taxi rouge' , 20.4, 0)";
+						var SQL_AJOUT6 = "INSERT INTO amelioration(id, cout, nom, taux, nombreAchete) VALUES(6,50000, 'DEC' , 103.2, 0)";
 						operation.executeSql(SQL_AJOUT);
 						operation.executeSql(SQL_AJOUT2);
 						operation.executeSql(SQL_AJOUT3);
+						operation.executeSql(SQL_AJOUT4);
+						operation.executeSql(SQL_AJOUT5);
+						operation.executeSql(SQL_AJOUT6);
 						amelioration = new Amelioration(1,10, "Machine à café", 0.2,0);
 						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
 						amelioration = new Amelioration(2,100, "Giga de données", 0.8,0);
 						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
 						amelioration = new Amelioration(3,500, "Canne de billard", 4,0);
+						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
+						amelioration = new Amelioration(4,2000, "Billet de taxi bleu", 12,0);
+						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
+						amelioration = new Amelioration(5,7000, "Billet de taxi rouge", 20.4,0);
+						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
+						amelioration = new Amelioration(6,50000, "DEC", 103.2,0);
 						self.listeAmeliorations[self.listeAmeliorations.length] = amelioration;
 					}
 						
